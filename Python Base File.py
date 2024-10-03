@@ -1,61 +1,52 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[15]:
-
-
-
-# In[16]:
-
 
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 
 
-# In[17]:
+# In[60]:
 
 
 # Load the compounds annotation dataset
 compounds = pd.read_csv('https://drive.google.com/uc?id=1EQvydk1MxbXF72_zVyUQHHPlvp7slqoN&export=download')
 
 
-# In[18]:
+# In[61]:
 
 
 # Load the GDSC dataset
 gdsc = pd.read_csv('https://drive.google.com/uc?id=1DJT1BFqwCjA8uipkSbENFftKU0_O-AK4&export=download',low_memory=False)
 
 
-# In[19]:
+# In[62]:
 
 
 # Load the GDSC2 dataset
 gdsc2 = pd.read_csv('https://drive.google.com/uc?id=1e8iHLMOVHrweM_rhKKBi93mOx8tYyMln&export=download',low_memory=False)
 
 
-# In[20]:
+# In[63]:
 
 
 # Load the Cell Line Details Dataset
 cell_lines_details = pd.read_csv('https://drive.google.com/uc?id=1ypE6lK8D1LcrG8IrMiRJqTxrBEdZH3LZ&export=download',low_memory=False)
 
 
-# In[21]:
+# In[64]:
 
 
 # Load the Cosmic tissue Classification dataset
 cosmic_tissue_classification = pd.read_csv('https://drive.google.com/uc?id=18fe6RRo-DAli112jzCt6OcYIoiAFyvYl&export=download',low_memory=False)
 
 
-# In[22]:
+# In[65]:
 
 
 # Load the Decode sheet dataset
 decode_sheet = pd.read_csv('https://drive.google.com/uc?id=1MBJpLBls56JzqXntLyqN0IUQ-AFuyeQs&export=download',header=1,low_memory=False)
 
 
-# In[23]:
+# In[66]:
 
 
 # Converting into DataFrame.
@@ -67,7 +58,19 @@ cosmic_tissue_classification_df = pd.DataFrame(cosmic_tissue_classification)
 decode_sheet_df = pd.DataFrame(decode_sheet)
 
 
-# In[25]:
+# In[67]:
+
+
+#Step 1: Check the first few rows of each dataset.
+gdsc_df.head()
+gdsc2_df.head()
+compounds_df.head()   # For compounds annotations
+cell_lines_details_df.head()  # For Sheet 1
+cosmic_tissue_classification_df.head()  # For Sheet 2
+decode_sheet_df.head()   # For Sheet 3
+
+
+# In[68]:
 
 
 #Step 2: Check for the data types and basic statistics.
@@ -79,7 +82,7 @@ print(cosmic_tissue_classification_df.info())
 print(decode_sheet_df.info())
 
 
-# In[26]:
+# In[77]:
 
 
 ## Identify missing values
@@ -91,7 +94,7 @@ print("Missing values in Cosmic Tissue Classification DataFrame(Sheet 2):\n", co
 print("Missing values in Decode DataFrame(Sheet 3):\n", decode_sheet_df.isnull().sum())
 
 
-# In[27]:
+# In[70]:
 
 
 # Dropping rows with excessive missing values (e.g., over 50%)
@@ -103,18 +106,7 @@ cosmic_tissue_classification_df_cleaned = cosmic_tissue_classification_df.dropna
 decode_sheet_df_cleaned = decode_sheet_df.dropna(thresh=len(decode_sheet_df.columns) * 0.5)
 
 
-# In[28]:
-
-
-# Filling missing numeric values with median
-gdsc_df_cleaned.loc[:, 'LN_IC50'] = gdsc_df_cleaned['LN_IC50'].fillna(gdsc_df_cleaned['LN_IC50'].median())
-gdsc_df_cleaned.loc[:, 'AUC'] = gdsc_df_cleaned['AUC'].fillna(gdsc_df_cleaned['AUC'].median())
-
-gdsc2_df_cleaned.loc[:, 'LN_IC50'] = gdsc2_df_cleaned['LN_IC50'].fillna(gdsc2_df_cleaned['LN_IC50'].median())
-gdsc2_df_cleaned.loc[:, 'AUC'] = gdsc2_df_cleaned['AUC'].fillna(gdsc2_df_cleaned['AUC'].median())
-
-
-# In[29]:
+# In[71]:
 
 
 # Remove duplicates from the cleaned DataFrames
@@ -126,7 +118,7 @@ cosmic_tissue_classification_df_cleaned = cosmic_tissue_classification_df_cleane
 decode_sheet_df_cleaned = decode_sheet_df_cleaned.drop_duplicates()
 
 
-# In[30]:
+# In[72]:
 
 
 # Optionally, We can check the number of duplicates removed
@@ -138,158 +130,111 @@ print(f"Duplicates removed from cosmic_tissue_classification_df_cleaned: {cosmic
 print(f"Duplicates removed from decode_sheet_df_cleaned: {decode_sheet_df_cleaned.duplicated().sum()}")
 
 
-# In[31]:
-### Merging
-
-#1. Merge gdsc_df_cleaned with gdsc2_df_cleaned:
-#Common columns: DRUG_ID, COSMIC_ID
-#We'll use an inner join to keep only matching entries.
-
-merged_df = pd.merge(gdsc_df_cleaned, gdsc2_df_cleaned, on=['DRUG_ID', 'COSMIC_ID'], how='inner')
-print(f"Merged gdsc_df_cleaned and gdsc2_df_cleaned shape: {merged_df.shape}")
+# In[75]:
 
 
-# In[32]:
+# Function to replace NaN values and show the replaced values
+def replace_nan_and_show_replacements(df):
+    replaced_values = {}
+    for column in df.columns:
+        # Identify rows where NaN values are present in the column
+        replaced_rows = df[df[column].isna()].copy()
+        
+        # Store the first 5 rows of replaced values and what they are replaced with
+        if not replaced_rows.empty:
+            replaced_rows[f"Replaced with"] = f"Unknown ({column})"
+            replaced_values[column] = replaced_rows[[column]].head(5)
+        
+        # Replace NaN values with "Unknown (Column header)"
+        df[column] = df[column].fillna(f"Unknown {column}")
+    
+    return df, replaced_values
+
+# Apply the function and store the replaced values
+replaced_values_all = {}
+
+gdsc_df_cleaned, replaced_values_gdsc = replace_nan_and_show_replacements(gdsc_df_cleaned)
+replaced_values_all['gdsc_df_cleaned'] = replaced_values_gdsc
+
+gdsc2_df_cleaned, replaced_values_gdsc2 = replace_nan_and_show_replacements(gdsc2_df_cleaned)
+replaced_values_all['gdsc2_df_cleaned'] = replaced_values_gdsc2
+
+compounds_df_cleaned, replaced_values_compounds = replace_nan_and_show_replacements(compounds_df_cleaned)
+replaced_values_all['compounds_df_cleaned'] = replaced_values_compounds
+
+cell_lines_details_df_cleaned, replaced_values_cell_lines = replace_nan_and_show_replacements(cell_lines_details_df_cleaned)
+replaced_values_all['cell_lines_details_df_cleaned'] = replaced_values_cell_lines
+
+cosmic_tissue_classification_df_cleaned, replaced_values_cosmic = replace_nan_and_show_replacements(cosmic_tissue_classification_df_cleaned)
+replaced_values_all['cosmic_tissue_classification_df_cleaned'] = replaced_values_cosmic
+
+decode_sheet_df_cleaned, replaced_values_decode = replace_nan_and_show_replacements(decode_sheet_df_cleaned)
+replaced_values_all['decode_sheet_df_cleaned'] = replaced_values_decode
+
+# Print 5 replaced values from each column along with what they were replaced with
+for df_name, replaced_values in replaced_values_all.items():
+    print(f"Replaced values in {df_name}:\n")
+    for column, values in replaced_values.items():
+        print(f"Column: {column}")
 
 
-#2.Merge the result with compounds_df_cleaned:
-# Common column: DRUG_ID
-# We'll use an inner join to merge based on DRUG_ID.
+# In[79]:
 
-merged_df = pd.merge(merged_df, compounds_df_cleaned, on='DRUG_ID', how='inner')
-print(f"Merged with compounds_df_cleaned shape: {merged_df.shape}")
+
+## Identify missing values
+print("Missing values in GDSC DataFrame:\n", gdsc_df_cleaned.isnull().sum())
+print("Missing values in GDSC2 DataFrame:\n", gdsc2_df_cleaned.isnull().sum())
+print("Missing values in Compounds DataFrame:\n", compounds_df_cleaned.isnull().sum())
+print("Missing values in Cell Lines Details DataFrame(Sheet 1):\n", cell_lines_details_df_cleaned.isnull().sum())
+print("Missing values in Cosmic Tissue Classification DataFrame(Sheet 2):\n", cosmic_tissue_classification_df_cleaned.isnull().sum())
+print("Missing values in Decode DataFrame(Sheet 3):\n", decode_sheet_df_cleaned.isnull().sum())
+
+
 
 
 # In[33]:
 
 
-#3. Merge with cell_lines_details_cleaned:
-# Common columns: COSMIC_ID (you mentioned 'COSMIC identifier')
-# We'll match on COSMIC_ID from previous merges and COSMIC identifier in cell_lines_details_cleaned.
-
-merged_df = pd.merge(merged_df, cell_lines_details_df_cleaned, left_on='COSMIC_ID', right_on='COSMIC identifier', how='inner')
-print(f"Merged with cell_lines_details_df_cleaned shape: {merged_df.shape}")
+# Optionally, We can check the number of duplicates removed
 
 
 # In[34]:
 
 
-#4. Merge with cosmic_tissue_classification_df_cleaned:
-# Common column: COSMIC_ID
-# We'll match on COSMIC_ID.
 
-merged_df = pd.merge(merged_df, cosmic_tissue_classification_df_cleaned, on='COSMIC_ID', how='inner')
-print(f"Merged with cosmic_tissue_classification_df_cleaned shape: {merged_df.shape}")
+from dotenv import load_dotenv
+import os
+import mysql.connector
+import sqlalchemy
+from sqlalchemy import create_engine
+load_dotenv()
 
+# Connection parameters
+host = os.getenv("HOST")  # Change if you're connecting remotely
+user = os.getenv("USER")  # Your MySQL username
+password = os.getenv("PASSWORD")  # Your MySQL password
+database = os.getenv("DATABASE")  # The database name you want to connect to
 
-# In[35]:
+tables = {
+    "gdsc": gdsc_df_cleaned,
+    "gdsc2": gdsc2_df_cleaned,
+    "Compund": compounds_df_cleaned,
+    "Cell_lines": cell_lines_details_df_cleaned,
+    "Cosmic_tissue_classification": cosmic_tissue_classification_df_cleaned,
+    "decode": decode_sheet_df_cleaned
+}
 
+# Create engine
+engine = create_engine(f"mysql+mysqlconnector://{user}:{password}@{host}/{database}")
 
-#5. Merge with decode_clean_sheet
-# Common column: TCGA label
-# We will match on 'TCGA label'
-
-merged_df = pd.merge(merged_df, decode_sheet_df_cleaned, left_on='TCGA_DESC_x', right_on='TCGA Label', how='left')
-print(f"Merged with decode_sheet_df_cleaned shape: {merged_df.shape}")
-
-
-# In[37]:
-
-
-# Check for duplicates
-duplicate_count = merged_df.duplicated().sum()
-print(f"Number of duplicate rows: {duplicate_count}")
-
-# Check for NaN values
-nan_counts = merged_df.isna().sum()
-print("NaN values in each column:\n", nan_counts)
-
-
-# In[38]:
-
-
-#1. Replace null values in the TARGET_x & TARGET_y column with "Unknown Target"
-merged_df['TARGET_x'] = merged_df['TARGET_x'].fillna('Unknown Target')
-merged_df['TARGET_y'] = merged_df['TARGET_y'].fillna('Unknown Target')
+# Using a context manager to handle the connection and transactions
+try:
+    with engine.begin() as connection:  # use begin() for transactional support
+        for table_name, df in tables.items():
+            df.to_sql(table_name, con=connection, if_exists='replace', index=False)
+except sqlalchemy.exc.SQLAlchemyError as e:
+    # SQLAlchemyError is a base exception for sqlalchemy-related errors
+    print(f"An error occurred: {e}")
 
 
-# In[39]:
-
-
-# Replace null values in the GDSC Tissue descriptor 1 & GDSC Tissue descriptor 2 column with "Unknown Target"
-merged_df['GDSC Tissue descriptor 1'] = merged_df['GDSC Tissue descriptor 1'].fillna('Unknown Tissue Origin')
-merged_df['GDSC Tissue descriptor 2'] = merged_df['GDSC Tissue descriptor 2'].fillna(' Tissue Orgin')
-
-
-# In[40]:
-
-
-# Merge the two specified columns into a single columns
-merged_df['TCGA_Label_1 (Description)'] = merged_df['Cancer Type (matching TCGA label)'].fillna(merged_df['TCGA_DESC_x'])
-
-# Drop the old columns
-merged_df.drop(columns=['TCGA_DESC_x', 'Cancer Type (matching TCGA label)'], inplace=True)
-
-# Display the updated DataFrame to see the new merged column
-print(merged_df.head())
-
-
-# In[41]:
-
-
-# Merge the specified columns into a new column
-merged_df['TCGA_Label_2 (Description)'] = merged_df['Cancer Type\n(matching TCGA label)'].fillna(merged_df['TCGA_DESC_y'])
-
-# Drop the old columns
-merged_df.drop(columns=['TCGA_DESC_y', 'Cancer Type\n(matching TCGA label)'], inplace=True)
-
-# Display the updated DataFrame to see the new merged column
-print(merged_df.head()) 
-
-
-# In[42]:
-
-
-# Drop the SYNONYMS column
-merged_df = merged_df.drop(columns=['SYNONYMS'])
-
-
-# In[43]:
-
-
-# Replace null values in specified columns
-merged_df['Microsatellite instability Status (MSI)'].fillna("Unknown MSI", inplace=True)
-merged_df['Screen Medium_x'].fillna("Unknown Screen Medium", inplace=True)
-merged_df['Growth Properties_x'].fillna("Unknown Growth Properties", inplace=True)
-merged_df['CNA'].fillna("Unknown CNA", inplace=True)
-merged_df['Gene Expression_x'].fillna("Unknown Gene Expression", inplace=True)
-merged_df['Methylation_x'].fillna("Unknown Methylation", inplace=True)
-merged_df['Microsatellite \ninstability Status (MSI)'].fillna("Unknown MSI", inplace=True)
-merged_df['TCGA Label'].fillna("Unknown TCGA Label", inplace=True)
-merged_df['Definition'].fillna("Unknown Definition", inplace=True)
-merged_df['TCGA_Label_1 (Description)'].fillna("Unknown TCGA_Label_1 (Description)", inplace=True)
-merged_df['TCGA_Label_2 (Description)'].fillna("Unknown TCGA_Label_2 (Description)", inplace=True)
-
-# Display the updated DataFrame to verify changes
-print(merged_df.head())
-
-
-# In[44]:
-
-
-# Checking the Percentage of Missing Values
-# Percentage of missing values for each column
-
-missing_percentage = merged_df.isnull().mean() * 100
-print(missing_percentage[missing_percentage > 0])
-
-
-# In[45]:
-
-
-# Remove '_x' and '_y' from column names
-merged_df.columns = merged_df.columns.str.replace('_x', '', regex=False).str.replace('_y', '', regex=False)
-
-# Display the updated DataFrame columns
-print(merged_df.columns.tolist())
 
