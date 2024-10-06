@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f2f5;
+        }
+        .header, .footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            max-width: 200px;
+            height: auto;
+        }
+        .footer img {
+            max-width: 100px;
+            height: auto;
+        }
+        .table-of-contents {
+            color: blue;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .table-of-contents ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .table-of-contents li {
+            margin: 5px 0;
+        }
+        .table-of-contents a {
+            text-decoration: none;
+            color: blue;
+            font-size: 18px;
+        }
+        .section {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            color: #333333;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .section h3 {
+            color: #555555;
+            margin-top: 20px;
+        }
+        .section p, .section ul, .section li {
+            font-size: 16px;
+            color: #444444;
+            line-height: 1.6;
+        }
+        .bold-big-blue {
+            color: blue;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .code-block {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 10px 0;
+        }
+        .link {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/Cancer_path/Path/logo.jpeg" alt="Project Logo">
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="table-of-contents section">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#project-overview">Project Overview</a></li>
+            <li><a href="#key-features">Key Features</a></li>
+            <li><a href="#dashboard-pages">Dashboard Pages</a></li>
+            <li><a href="#metrics-explained">Metrics Explained</a></li>
+            <li><a href="#technology-stack">Technology Stack</a></li>
+            <li><a href="#team-members-and-responsibilities">Team Members and Responsibilities</a></li>
+            <li><a href="#how-to-use-the-dashboard">How to Use the Dashboard</a></li>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="#license">License</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Project Overview -->
+    <div id="project-overview" class="section">
+        <h2>Project Overview</h2>
+        <div class="section">
+            <p>Welcome to the <span class="bold-big-blue">Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)</span> project! This initiative leverages the <a href="https://www.cancerrxgene.org/" class="link">Genomics of Drug Sensitivity in Cancer (GDSC)</a> dataset to provide actionable insights into how various drugs affect different cancer types. The goal is to empower healthcare professionals with real-time, interactive visualizations that support informed treatment decisions.</p>
+        </div>
+    </div>
+
+    <!-- Key Features -->
+    <div id="key-features" class="section">
+        <h2>Key Features</h2>
+        <div class="section">
+            <ul>
+                <li><span class="bold-big-blue">Real-Time Data Fetching:</span> Utilizes Google Console API keys to retrieve the latest drug sensitivity data, keeping the dashboard up-to-date.</li>
+                <li><span class="bold-big-blue">Dynamic Programming:</span> Employs a real-time data pipeline from Python to SQL using the <code>time</code> function, enabling instant insights as new data is ingested.</li>
+                <li><span class="bold-big-blue">Comprehensive Visual Exploration:</span>
+                    <ul>
+                        <li><strong>Cards:</strong> Display quick summary insights at a glance.</li>
+                        <li><strong>Slicers:</strong> Offer dynamic data filtering based on various dimensions.</li>
+                        <li><strong>Donut & Funnel Charts:</strong> Highlight key metrics and performance indicators.</li>
+                        <li><strong>Tree Maps:</strong> Visualize relationships between cancer types and drug sensitivities.</li>
+                        <li><strong>Clustered Column Charts, Line Charts:</strong> Provide detailed analysis.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Dashboard Pages -->
+    <div id="dashboard-pages" class="section">
+        <h2>Dashboard Pages</h2>
+        <div class="section">
+            <h3>Page 1: Title</h3>
+            <p><strong>Project Logo:</strong> Features the project logo for immediate recognition and branding.</p>
+        </div>
+        <div class="section">
+            <h3>Page 2: GDSC Treatment Insights</h3>
+            <p>Provides a comprehensive overview of drug sensitivity metrics, including:</p>
+            <ul>
+                <li><strong>Unique Drugs</strong></li>
+                <li><strong>Average IC50</strong></li>
+                <li><strong>Average LN(IC50)</strong></li>
+                <li><strong>Average AUC Sensitivity</strong></li>
+            </ul>
+            <h4>Interactive Visualizations</h4>
+            <ul>
+                <li><strong>Cards:</strong> Showcase key statistics for quick reference.</li>
+                <li><strong>Slicers:</strong> Enable filtering by cancer type, drug, and other relevant dimensions.</li>
+                <li><strong>Donut Chart & Clustered Column Chart:</strong> Analyze distribution and performance metrics.</li>
+                <li><strong>Tree Map, Funnel Chart, Gauge Chart:</strong> Allow for in-depth data exploration.</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>Page 3: Advanced Insights</h3>
+            <p>Delves deeper into metrics such as AUC, Z-Score, and others, offering customizable visualizations tailored for advanced users seeking granular insights.</p>
+        </div>
+    </div>
+
+    <!-- Metrics Explained -->
+    <div id="metrics-explained" class="section">
+        <h2>Metrics Explained</h2>
+        <div class="section">
+            <ul>
+                <li><strong>IC50:</strong> The concentration of a drug required to inhibit 50% of cancer cells. Lower values indicate higher sensitivity.</li>
+                <li><strong>LN(IC50):</strong> The logarithmic transformation of IC50 values, used to normalize the distribution.</li>
+                <li><strong>AUC (Area Under Curve):</strong> Reflects the overall effectiveness of a drug. Higher values indicate stronger sensitivity.</li>
+                <li><strong>Z-Score:</strong> A standardized score representing the variation of drug sensitivity across different cancer tissue types.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div id="technology-stack" class="section">
+        <h2>Technology Stack</h2>
+        <div class="section">
+            <ul>
+                <li><strong>Python:</strong> Handles data preprocessing and real-time updates, utilizing the Pandas library for efficient data manipulation.</li>
+                <li><strong>SQLAlchemy:</strong> Facilitates the transfer of data from Python to a SQL database seamlessly.</li>
+                <li><strong>Google Console:</strong> Fetches real-time data using API keys, ensuring the dashboard is always current.</li>
+                <li><strong>Power BI:</strong> Serves as the primary visualization tool for building interactive and dynamic dashboards.</li>
+                <li><strong>DAX (Data Analysis Expressions):</strong> Power BI's formula language used for dynamic calculation of metrics such as AUC Sensitivity.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Team Members and Responsibilities -->
+    <div id="team-members-and-responsibilities" class="section">
+        <h2>Team Members and Responsibilities</h2>
+        <div class="section">
+            <ol>
+                <li><strong>Abhishek Mishra (Team Lead)</strong>
+                    <ul>
+                        <li>Managed the overall project.</li>
+                        <li>Led data analysis efforts.</li>
+                        <li>Created the Power BI dashboard.</li>
+                        <li>Implemented DAX formulas for metrics like AUC Sensitivity.</li>
+                    </ul>
+                </li>
+                <li><strong>Sree Ram</strong>
+                    <ul>
+                        <li>Handled Python programming for data cleaning, merging, and transformation.</li>
+                        <li>Utilized SQLAlchemy to transfer data from Python to the SQL database.</li>
+                        <li>Connected the SQL database to Power BI, ensuring real-time data retrieval.</li>
+                    </ul>
+                </li>
+                <li><strong>Sriyanshu</strong>
+                    <ul>
+                        <li>Conducted data exploration and retrieved key insights.</li>
+                        <li>Ensured analysis aligned with project goals.</li>
+                        <li>Created the project logo, designed backgrounds, and added a QR code linking to the project repository.</li>
+                    </ul>
+                </li>
+                <li><strong>Yashjeet</strong>
+                    <ul>
+                        <li>Managed the GitHub repository, including code updates and version control.</li>
+                        <li>Fetched data from Google Console using API keys.</li>
+                        <li>Transferred data into the SQL database.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- How to Use the Dashboard -->
+    <div id="how-to-use-the-dashboard" class="section">
+        <h2>How to Use the Dashboard</h2>
+        <div class="section">
+            <ol>
+                <li><strong>Open the Power BI File:</strong> Launch the Power BI file to access the dashboard.</li>
+                <li><strong>Use Slicers:</strong> Filter data by Cancer Type, Drug Name, Target Pathway, and more.</li>
+                <li><strong>Explore Visualizations:</strong> Navigate through different charts and visualizations to gain detailed insights into drug performance across various cancer types.</li>
+                <li><strong>Real-Time Updates:</strong> The dashboard fetches data in real-time from Google Console and updates dynamically.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div id="getting-started" class="section">
+        <h2>Getting Started</h2>
+        <div class="section">
+            <h3>Prerequisites</h3>
+            <p>Ensure you have the following installed on your system:</p>
+            <ul>
+                <li><strong>Python:</strong> <a href="https://www.python.org/downloads/" class="link">Download Python</a></li>
+                <li><strong>Power BI Desktop:</strong> <a href="https://powerbi.microsoft.com/desktop/" class="link">Download Power BI Desktop</a></li>
+                <li><strong>SQL Database:</strong> Set up a SQL database (e.g., MySQL, PostgreSQL, SQL Server).</li>
+                <li><strong>Google Console API Keys:</strong> Obtain API keys from <a href="https://console.cloud.google.com/" class="link">Google Cloud Console</a>.</li>
+            </ul>
+
+            <h3>Installation</h3>
+            <p>Follow these steps to set up the project locally:</p>
+
+            <h4>1. Clone the Repository</h4>
+            <div class="code-block">
+                git clone https://github.com/Abhi-0312/Energy_Efficient_Engineers_050.git<br>
+                cd Energy_Efficient_Engineers_050
+            </div>
+
+            <h4>2. Set Up Python Environment</h4>
+            <div class="code-block">
+                pip install -r requirements.txt
+            </div>
+
+            <h4>3. Configure SQL Database</h4>
+            <p>Update the SQLAlchemy connection string in the Python scripts (<code>config.py</code> or similar).</p>
+            <div class="code-block">
+                # Example connection string<br>
+                DATABASE_URI = 'postgresql+psycopg2://username:password@localhost:5432/gdsc_dashboard'
+            </div>
+
+            <h4>4. Configure Google Console API</h4>
+            <p>Add your API keys to the configuration files (<code>config.py</code> or similar).</p>
+            <div class="code-block">
+                # Example API key configuration<br>
+                GOOGLE_API_KEY = 'your_google_api_key_here'
+            </div>
+
+            <h4>5. Run Data Preprocessing Scripts</h4>
+            <div class="code-block">
+                python preprocess_data.py
+            </div>
+
+            <h4>6. Open Power BI Dashboard</h4>
+            <p>Launch the Power BI file (<code>dashboard.pbix</code>) to start exploring the dashboard.</p>
+        </div>
+    </div>
+
+    <!-- License -->
+    <div id="license" class="section">
+        <h2>License</h2>
+        <div class="section">
+            <p>This project is licensed under the <a href="https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/blob/main/LICENSE" class="link">MIT License</a>.</p>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="section">
+        <h2>Contact</h2>
+        <div class="section">
+            <p>For any questions or feedback, please reach out to:</p>
+            <ul>
+                <li><strong>Abhishek Mishra:</strong> <a href="mailto:abhishek@example.com" class="link">abhishek@example.com</a></li>
+                <li><strong>Sree Ram:</strong> <a href="mailto:sree.ram@example.com" class="link">sree.ram@example.com</a></li>
+                <li><strong>Sriyanshu:</strong> <a href="mailto:sriyanshu@example.com" class="link">sriyanshu@example.com</a></li>
+                <li><strong>Yashjeet:</strong> <a href="mailto:work.yashjeet@gmail.com" class="link">work.yashjeet@gmail.com</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer with QR Code -->
+    <div class="footer section">
+        <img src="https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/Cancer_path/Path/qrcode.png" alt="QR Code">
+        <p><em>Scan the QR code to visit the <a href="https://github.com/Abhi-0312/Energy_Efficient_Engineers_050" class="link">Project Repository</a>.</em></p>
+    </div>
+
+</body>
+</html>
