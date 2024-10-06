@@ -1,1 +1,183 @@
-NEW
+# Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)
+
+![Project Logo](https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/Cancer_path/Path/logo.jpeg)
+
+![GitHub Repo Stars](https://img.shields.io/github/stars/Abhi-0312/Energy_Efficient_Engineers_050?style=social)
+![GitHub License](https://img.shields.io/github/license/Abhi-0312/Energy_Efficient_Engineers_050)
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Dashboard Pages](#dashboard-pages)
+  - [Page 1: Title](#page-1-title)
+  - [Page 2: GDSC Treatment Insights](#page-2-gdsc-treatment-insights)
+  - [Page 3: Advanced Insights](#page-3-advanced-insights)
+- [Metrics Explained](#metrics-explained)
+- [Technology Stack](#technology-stack)
+- [Team Members and Responsibilities](#team-members-and-responsibilities)
+- [How to Use the Dashboard](#how-to-use-the-dashboard)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [License](#license)
+- [Contact](#contact)
+
+## Project Overview
+
+Welcome to the **Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)** project! This initiative leverages the [Genomics of Drug Sensitivity in Cancer (GDSC)](https://www.cancerrxgene.org/) dataset to provide actionable insights into how various drugs affect different cancer types. The goal is to empower healthcare professionals with real-time, interactive visualizations that support informed treatment decisions.
+
+### Highlights
+
+- **Real-Time Updates**: Our dashboard dynamically updates with the latest data, ensuring you always have access to the most current insights.
+- **Interactive Visualizations**: Dive deep into the data with a variety of charts and filters tailored to your analytical needs.
+- **Robust Technology Integration**: Seamlessly combines Python, SQL, Google Console API, and Power BI for a comprehensive analytical solution.
+
+## Key Features
+
+- **Real-Time Data Fetching**: Utilizes Google Console API keys to retrieve the latest drug sensitivity data, keeping the dashboard up-to-date.
+- **Dynamic Programming**: Employs a real-time data pipeline from Python to SQL using the `time` function, enabling instant insights as new data is ingested.
+- **Comprehensive Visual Exploration**:
+  - **Cards**: Display quick summary insights at a glance.
+  - **Slicers**: Offer dynamic data filtering based on various dimensions.
+  - **Donut & Funnel Charts**: Highlight key metrics and performance indicators.
+  - **Tree Maps**: Visualize relationships between cancer types and drug sensitivities.
+  - **Clustered Column Charts, Line Charts**, and more for detailed analysis.
+
+## Dashboard Pages
+
+### Page 1: Title
+
+- **Project Logo**: Features the project logo for immediate recognition and branding.
+
+### Page 2: GDSC Treatment Insights
+
+Provides a comprehensive overview of drug sensitivity metrics, including:
+
+- **Unique Drugs**
+- **Average IC50**
+- **Average LN(IC50)**
+- **Average AUC Sensitivity**
+
+#### Interactive Visualizations
+
+- **Cards**: Showcase key statistics for quick reference.
+- **Slicers**: Enable filtering by cancer type, drug, and other relevant dimensions.
+- **Donut Chart & Clustered Column Chart**: Analyze distribution and performance metrics.
+- **Tree Map, Funnel Chart, Gauge Chart**, and more for in-depth data exploration.
+
+### Page 3: Advanced Insights
+
+Delves deeper into metrics such as AUC, Z-Score, and others, offering customizable visualizations tailored for advanced users seeking granular insights.
+
+## Metrics Explained
+
+- **IC50**: The concentration of a drug required to inhibit 50% of cancer cells. Lower values indicate higher sensitivity.
+- **LN(IC50)**: The logarithmic transformation of IC50 values, used to normalize the distribution.
+- **AUC (Area Under Curve)**: Reflects the overall effectiveness of a drug. Higher values indicate stronger sensitivity.
+- **Z-Score**: A standardized score representing the variation of drug sensitivity across different cancer tissue types.
+
+## Technology Stack
+
+- **Python**: Handles data preprocessing and real-time updates, utilizing the Pandas library for efficient data manipulation.
+- **SQLAlchemy**: Facilitates the transfer of data from Python to a SQL database seamlessly.
+- **Google Console**: Fetches real-time data using API keys, ensuring the dashboard is always current.
+- **Power BI**: Serves as the primary visualization tool for building interactive and dynamic dashboards.
+- **DAX (Data Analysis Expressions)**: Power BI's formula language used for dynamic calculation of metrics such as AUC Sensitivity.
+
+## Team Members and Responsibilities
+
+1. **Abhishek Mishra (Team Lead)**
+   - Managed the overall project.
+   - Led data analysis efforts.
+   - Created the Power BI dashboard.
+   - Implemented DAX formulas for metrics like AUC Sensitivity.
+
+2. **Sree Ram**
+   - Handled Python programming for data cleaning, merging, and transformation.
+   - Utilized SQLAlchemy to transfer data from Python to the SQL database.
+   - Connected the SQL database to Power BI, ensuring real-time data retrieval.
+
+3. **Sriyanshu**
+   - Conducted data exploration and retrieved key insights.
+   - Ensured analysis aligned with project goals.
+   - Created the project logo, designed backgrounds, and added a QR code linking to the project repository.
+
+4. **Yashjeet**
+   - Managed the GitHub repository, including code updates and version control.
+   - Fetched data from Google Console using API keys.
+   - Transferred data into the SQL database.
+
+## How to Use the Dashboard
+
+1. **Open the Power BI File**: Launch the Power BI file to access the dashboard.
+2. **Use Slicers**: Filter data by Cancer Type, Drug Name, Target Pathway, and more.
+3. **Explore Visualizations**: Navigate through different charts and visualizations to gain detailed insights into drug performance across various cancer types.
+4. **Real-Time Updates**: The dashboard fetches data in real-time from Google Console and updates dynamically.
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed on your system:
+
+- **Python**: [Download Python](https://www.python.org/downloads/)
+- **Power BI Desktop**: [Download Power BI Desktop](https://powerbi.microsoft.com/desktop/)
+- **SQL Database**: Set up a SQL database (e.g., MySQL, PostgreSQL, SQL Server).
+- **Google Console API Keys**: Obtain API keys from [Google Cloud Console](https://console.cloud.google.com/).
+
+### Installation
+
+Follow these steps to set up the project locally:
+
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/Abhi-0312/Energy_Efficient_Engineers_050.git
+    cd Energy_Efficient_Engineers_050
+    ```
+
+2. **Set Up Python Environment**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Configure SQL Database**
+    - Update the SQLAlchemy connection string in the Python scripts (`config.py` or similar).
+    ```python
+    # Example connection string
+    DATABASE_URI = 'postgresql+psycopg2://username:password@localhost:5432/gdsc_dashboard'
+    ```
+
+4. **Configure Google Console API**
+    - Add your API keys to the configuration files (`config.py` or similar).
+    ```python
+    # Example API key configuration
+    GOOGLE_API_KEY = 'your_google_api_key_here'
+    ```
+
+5. **Run Data Preprocessing Scripts**
+    ```bash
+    python preprocess_data.py
+    ```
+
+6. **Open Power BI Dashboard**
+    - Launch the Power BI file (`dashboard.pbix`) to start exploring the dashboard.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For any questions or feedback, please reach out to:
+
+- **Abhishek Mishra** - [abhishek@example.com](mailto:abhishek@example.com)
+- **Sree Ram** - [sree.ram@example.com](mailto:sree.ram@example.com)
+- **Sriyanshu** - [sriyanshu@example.com](mailto:sriyanshu@example.com)
+- **Yashjeet** - [work.yashjeet@gmail.com](mailto:work.yashjeet@gmail.com)
+
+---
+
+![QR Code](https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/Cancer_path/Path/qrcode.png)
+
+*Scan the QR code to visit the [Project Repository](https://github.com/Abhi-0312/Energy_Efficient_Engineers_050).*

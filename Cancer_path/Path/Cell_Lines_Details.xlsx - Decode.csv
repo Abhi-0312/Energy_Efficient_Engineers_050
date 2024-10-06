@@ -1,0 +1,51 @@
+TCGA tissue classification:,
+TCGA Label,Definition
+ACC,Adrenocortical carcinoma
+ALL,Acute lymphoblastic leukemia
+BLCA,Bladder Urothelial Carcinoma
+BRCA,Breast invasive carcinoma
+CESC,Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CLL,Chronic Lymphocytic Leukemia
+COREAD,Colon adenocarcinoma and Rectum adenocarcinoma
+DLBC,Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+ESCA,Esophageal carcinoma
+GBM,Glioblastoma multiforme
+HNSC,Head and Neck squamous cell carcinoma
+KIRC,Kidney renal clear cell carcinoma
+LAML,Acute Myeloid Leukemia
+LCML,Chronic Myelogenous Leukemia
+LGG,Brain Lower Grade Glioma
+LIHC,Liver hepatocellular carcinoma
+LUAD,Lung adenocarcinoma
+LUSC,Lung squamous cell carcinoma
+MB,Medulloblastoma
+MESO,Mesothelioma
+MM,Multiple Myeloma
+NB,Neuroblastoma
+OV,Ovarian serous cystadenocarcinoma
+PAAD,Pancreatic adenocarcinoma
+PRAD,Prostate adenocarcinoma
+SCLC,Small Cell Lung Cancer
+SKCM,Skin Cutaneous Melanoma
+STAD,Stomach adenocarcinoma
+THCA,Thyroid carcinoma
+UCEC,Uterine Corpus Endometrial Carcinoma
+,
+,
+,
+,
+Microsatillite instability data,
+MSS,Microsatillite class stable (0 of 5 markers show instability)
+MSI-L,Microsatillite instability low (1 of 5 markers show instability)
+MSI-H,Microsatillite instability High (>=2 of 5 markers show instability)
+,
+Full data available from the COSMIC Cell Lines database (http://cancer.sanger.ac.uk/cancergenome/assets/cell_lines/QC.xlsx),
+,
+,
+,
+Growth media,
+D/F12,"DMEM/F12: DMEM/F12, 10% FBS, 1% PenStrep"
+D/F12+10,"DMEM/F12+additonal 10%FBS: DMEM/F12, 20% FBS, 1% PenStrep"
+R,"RPMI: RPMI, 10% FBS, % PenStrep, % Glucose, 1mM Sodium Pyruvate"
+R+10,"RPMI+additonal 10%FBS: RPMI, 20% FBS, % PenStrep, % Glucose, 1mM Sodium Pyruvate"
+H,"Hites: 5ug/ml Insulin, 10nM B-estradiol, 10uM Hydrocortisone"
