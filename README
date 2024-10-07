@@ -1,5 +1,137 @@
+Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)
 
-# Drug Sensitivity Analysis and Dynamic Dashboard (GDSC)
+Table of Contents
+Project Overview
+Key Features
+Dashboard Pages
+Page 1: Title
+Page 2: GDSC Treatment Insights
+Page 3: Advanced Insights
+Metrics Explained
+Technology Stack
+Team Members and Responsibilities
+How to Use the Dashboard
+Getting Started
+License
+Contact
+Project Overview
+This project focuses on Drug Sensitivity Analysis using the Genomics of Drug Sensitivity in Cancer (GDSC) dataset. The objective is to create a real-time interactive dashboard that offers insights into the effects of various drugs on different cancer types, supporting better treatment decisions. The dashboard dynamically updates with new data, providing fresh insights every time data is loaded.
 
-![Project Logo](https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/assets/logo.jpeg)
+We integrated Python for data pre-processing and real-time updates through the Google Console API. The dataset is transferred into a SQL database using SQLAlchemy, facilitating easier manipulation and retrieval of data for visualization in Power BI.
 
+Key Features
+Real-Time Data Fetching: Utilizes Google Console API keys to fetch the latest drug sensitivity information, ensuring the dashboard remains up-to-date.
+Dynamic Programming: Implements a real-time data pipeline from Python to SQL using the time function, enabling instant insights as new data becomes available.
+Visual Exploration of Drug Sensitivity: Features a variety of visualizations, including:
+Cards: Quick summary insights.
+Slicers: Dynamic data filtering.
+Donut and Funnel Charts: Showcase key metrics.
+Tree Map: Illustrates relationships between cancer types and drug sensitivity.
+Clustered Column Charts, Line Charts, and more for detailed analysis.
+Dashboard Pages
+Page 1: Title
+Project Logo: Displays the project logo for branding and recognition.
+Page 2: GDSC Treatment Insights
+Provides a general overview of drug sensitivity metrics such as:
+
+Unique Drugs
+Average IC50
+Average LN(IC50)
+Average AUC Sensitivity
+Interactive Visualizations
+Cards: Highlight key statistics.
+Slicers: Filter data by cancer type, drug, and other dimensions.
+Donut Chart & Clustered Column Chart: Analyze distribution and performance.
+Tree Map, Funnel Chart, Gauge Chart, and more for in-depth exploration.
+Page 3: Advanced Insights
+Offers deeper analysis of metrics like AUC, Z-Score, and others with customizable visualizations tailored for advanced users.
+
+Metrics Explained
+IC50: Measures the concentration of a drug required to inhibit 50% of cancer cells. Lower values indicate higher sensitivity.
+LN(IC50): Logarithmic transformation of IC50 values, used to normalize the distribution.
+AUC (Area Under Curve): Reflects the overall effectiveness of a drug. Higher values indicate stronger sensitivity.
+Z-Score: Standardized score representing the variation of drug sensitivity across different cancer tissue types.
+Technology Stack
+Python: Used for data preprocessing and real-time updates, leveraging the Pandas library for data manipulation.
+SQLAlchemy: Efficiently transfers data from Python to a SQL database.
+Google Console: Fetches real-time data using API keys.
+Power BI: Visualization tool for building interactive and dynamic dashboards.
+DAX (Data Analysis Expressions): Power BI's formula language used for dynamic calculation of metrics such as AUC Sensitivity.
+Team Members and Responsibilities
+Abhishek Mishra (Team Lead):
+
+Managed the project.
+Led data analysis.
+Created the Power BI dashboard.
+Implemented DAX formulas for metrics like AUC Sensitivity.
+Sree Ram:
+
+Handled Python programming for data cleaning, merging, and transformation.
+Used SQLAlchemy to transfer data from Python to the SQL database.
+Connected the SQL database to Power BI, ensuring real-time data retrieval.
+Sriyanshu:
+
+Conducted data exploration and retrieved insights.
+Ensured analysis aligned with project goals.
+Created the project logo, designed backgrounds, and added a QR code linking to the project repository.
+Yashjeet:
+
+Managed the GitHub repository, including code updates and version control.
+Fetched data from Google Console using API keys.
+Transferred data into the SQL database.
+How to Use the Dashboard
+Open the Power BI File: Launch the Power BI file to access the dashboard.
+Use Slicers: Filter data by Cancer Type, Drug Name, Target Pathway, and more.
+Explore Visualizations: Navigate through different charts and visualizations to gain detailed insights into drug performance across various cancer types.
+Real-Time Updates: The dashboard fetches data in real-time from Google Console and updates dynamically.
+Getting Started
+Prerequisites
+Python: Ensure Python is installed on your system.
+Power BI: Install Power BI Desktop for visualization.
+SQL Database: Set up a SQL database to store and manage the data.
+Google Console API Keys: Obtain API keys from Google Console for data fetching.
+Installation
+Clone the Repository:
+
+bash
+Copy code
+git clone https://github.com/Abhi-0312/Energy_Efficient_Engineers_050
+cd gdsc-dashboard
+Set Up Python Environment:
+
+bash
+Copy code
+pip install -r requirements.txt
+Configure SQL Database:
+
+Update the SQLAlchemy connection string in the Python scripts.
+
+Configure Google Console API:
+
+Add your API keys to the configuration files.
+
+Run Data Preprocessing Scripts:
+
+bash
+Copy code
+python preprocess_data.py
+Open Power BI Dashboard:
+
+Launch the Power BI file (dashboard.pbix) to start exploring the dashboard.
+
+License
+This project is licensed under the MIT License.
+
+Contact
+For any questions or feedback, please contact:
+
+Abhishek Mishra - abhishek@example.com
+Sree Ram - sree.ram@example.com
+Sriyanshu - sriyanshu@example.com
+Yashjeet - work.yashjeet@gmail.com
+Notes:
+
+Replace https://github.com/Abhi-0312/Energy_Efficient_Engineers_050/Cancer_path/Path/logo.jpeg with the actual path to your project logo in the repository.
+Update contact emails and GitHub repository links with actual information.
+Add a LICENSE file to your repository if you reference it.
+Consider adding sections like Acknowledgements or References if needed.
